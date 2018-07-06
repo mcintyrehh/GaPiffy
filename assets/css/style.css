@@ -1,3 +1,26 @@
 body {
     background-image: url(../images/isometropolis.jpg);
 }
+
+.main-box {
+    background-color: whitesmoke;
+    min-height: 50vh;
+}
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+        justify-content: center;
+    } 
+    .dylan {
+        width: 100%;
+    }
+    .main-box {
+        width: 95vw;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+   
+}
