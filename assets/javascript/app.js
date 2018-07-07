@@ -68,7 +68,7 @@ $(document).ready(function () {
 
     for (var r = 0; r < gifArray.length; r++) {
         var val = gifArraySearch[r];
-        console.log(val);
+        
         $('.buttons').append("<button class=\"btn btn-primary gen-button\" type=\"button\" id=\"button_" + r + "\">" + gifArray[r] + "</div>");
         $('#button_' + r).data("name", val);
     }
@@ -82,17 +82,17 @@ $(document).ready(function () {
         }).then(function (response) {
             var array = response; 
             console.log(response);
-            console.log(array.data[0].images.fixed_width_still.url);
+            console.log(response.data[0].images.fixed_width_still.url);
             
             function addGifs(x) {
-                var gifData = array.data[x];
+                var gifData = response.data[x];
+                $('.gifs').append('<img src="' + x.images.fixed_width_still.url + '">');
+            }
+
+            array.data.forEach(function(element)  {
+                return addGifs(element);
+            });
                 
-                $('.gifs').append('<img src="' + gifData.images.fixed_width_still.url + '">');
-//***Maybe add a return: gifData??? */
-            }
-            for (var j = 0; j < 11; j++) {
-                addGifs(j);
-            }
+            });
         });
     });
-});
