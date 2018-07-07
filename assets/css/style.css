@@ -5,6 +5,16 @@ body {
 .main-box {
     background-color: whitesmoke;
     min-height: 50vh;
+    margin-bottom: 10px;
+}
+img {
+    margin: 10px;
+}
+.gifs {
+    min-height: 30vh;
+}
+.gen-button {
+    margin: 5px;
 }
 
 
