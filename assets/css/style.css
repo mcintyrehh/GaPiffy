@@ -7,16 +7,31 @@ body {
     min-height: 50vh;
     margin-bottom: 10px;
 }
-img {
-    margin: 10px;
+#add {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
 }
-.gifs {
-    min-height: 30vh;
+
+.active {
+    background-color: #0062cc
 }
+
 .gen-button {
     margin: 5px;
 }
-
+.dl-btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /* Darker background on mouse-over */
+  .dl-btn:hover {
+    background-color: RoyalBlue;
+  }
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
@@ -34,3 +49,6 @@ img {
     }
    
 }
+/* *:hover {
+    
+} */

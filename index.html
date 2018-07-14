@@ -1,36 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Dope Henry Face Favicon-->
-    <link rel="shortcut icon" href="assets/images/favicon.ico"/>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <!-- Bootstrap CSS/icon library/stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>😏GaPiffy😎</title>
-  </head>
-  <body>
-    
+</head>
+
+<body>
+
     <h1 class="text-center mx-auto">😏Gif it up😎</h1>
     <div class="container col-sm-10 mx-auto rounded main-box">
         <div class="col-md-10 mx-auto search-bar">
             <div class="input-group mb-3">
                 <div type="text" class="form-control mt-3" id="typedtext"></div>
                 <div class="input-group-append">
-                    <button class="btn btn-success mt-3" type="button">add</button>
+                    <button class="btn btn-success mt-3" type="button" id="add">add</button>
                 </div>
-                <!-- <div id="typedtext"></div> -->
-            </div>
+            <div></div>
+            <div class="btn-group btn-group-toggle mt-3 ml-3" data-toggle="buttons">
+                <label class="btn btn-secondary toggle-btn fresh active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Fresh Gifs
+                </label>
+                <label class="btn btn-secondary add toggle-btn">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Add Gifs
+                </label>
+            </div>  
+            </div>  
         </div>
-        <div class="col-md-10 mx-auto gifs">
-           
-        </div>
-        <div class="col-md-10 mx-auto buttons">
+
+        <div class="col-md-12 mx-auto d-flex flex-wrap justify-content-center gifs">
 
         </div>
-    </div>    
+        <div class="col-md-10 mx-auto d-flex justify-content-center flex-wrap buttons">
+
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -39,5 +52,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
-  </body>
+</body>
+
 </html>
