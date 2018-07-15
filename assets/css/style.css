@@ -11,7 +11,13 @@ body {
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
 }
-
+.titletop {
+    font-size: 24pt;
+    font-weight: bold;
+}
+.fav {
+    color: gold;
+}
 .active {
     background-color: #0062cc
 }
