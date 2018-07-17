@@ -42,7 +42,6 @@ $(document).ready(function () {
         var newIndex = gifArray.indexOf(newButton);
         var newName = gifArray[newIndex];
         console.log(newIndex);
-        $('.buttons').append("<button class=\"btn btn-primary gen-button\" type=\"button\" id=\"button_" + newIndex + "\">" + gifArray[newIndex] + "</div>");
         $('#button_' + newIndex).data("name", newName);
         console.log($('#button_15').data("name"));
         $('#button_' + newIndex).on("click", function () {
@@ -54,7 +53,44 @@ $(document).ready(function () {
         console.log(x);
         onClickGifs($(this));
     });
+    $('#fav-button').on("click", function() {
+        $('.gifs').empty();
+        favoriteGifs.forEach(function(element) {
+            addFavs(element.static, element.title, element.gif);
+        });
+    });
+    function addFavs(x, y, z) {
+        // creating a card for each gif, setting static and gif variables as their respective URLs
+        var gifCard = $("<div>");
+        gifCard.addClass("card m-2 bg-dark text-center text-white");
+        var b = $("<img>");
+        var static = x;
+        var title = y;
+        var gif = z;
+        //setting classes, static, gif and state attributes so they can be switched between on click
+        b.addClass("gif");
+        b.attr("src", static);
+        b.attr("data-static", static);
+        b.attr("data-gif", gif);
+        b.attr("data-state", "still");
+        //adding the image to the card
+        gifCard.append(b);
+        var overlay = $("<div>");
+        overlay.addClass("card-img-overlay d-flex flex-column justify-content-end hover-text");
+        overlay.append('<h5 class="card-title gif-name hide">' + title + '</h5>' + '<span class="fav-div" data-static="' + static + '" data-gif="' + gif + '" data-title="' + title + '" fav-saved="no"><i class="far fa-star mx-auto fav btn hide"></i></span>' +
+            '<iframe class="download_iframe" style="display:none;"></iframe><button class="btn dl-btn hide" data-gif="' + gif + '"><i class="fa fa-download"></i> Download</button>');
+        gifCard.append(overlay);
+        $(".gifs").append(gifCard);
+        //elements with the hide class will only be shown on hover
+        $('.hide').hide();
+        hoverLogic(gifCard);
 
+
+    }
+    $('.gifs').on("click", ".dl-btn", function() {
+        console.log($(this).attr("data-gif"));
+        $(this.download_iframe).attr("href", $(this).attr("data-gif"));
+    });
     function onClickGifs(gif) {
         // var buttonClicked = 
         queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif.data("name") + "&api_key=s9kLWgDVn7rUQdMDmUSknpwBTvdwPrzT&limit=50";
@@ -65,6 +101,7 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             var array = response;
+            var downloadLink = array.data[x].url;
             console.log(response);
             console.log(response.data[0].images.fixed_width_still.url);
             console.log(toggleAddFresh);
@@ -75,6 +112,7 @@ $(document).ready(function () {
                 var b = $("<img>");
                 var static = array.data[x].images.fixed_height_still.url;
                 var gif = array.data[x].images.fixed_height.url;
+                var title = array.data[x].title;
                 //setting classes, static, gif and state attributes so they can be switched between on click
                 b.addClass("gif");
                 b.attr("src", static);
@@ -85,10 +123,9 @@ $(document).ready(function () {
                 gifCard.append(b);
                 var overlay = $("<div>");
                 overlay.addClass("card-img-overlay d-flex flex-column justify-content-end hover-text");
-                overlay.append('<h5 class="card-title gif-name hide">' + array.data[x].title + '</h5>' + '<span class="fav-div" fav-saved="no"><i class="far fa-star mx-auto fav btn hide"></i></div>' +
-                    '<button class="btn dl-btn hide"><i class="fa fa-download"></i> Download</button>');
+                overlay.append('<h5 class="card-title gif-name hide">' + title + '</h5>' + '<span class="fav-div" data-static="' + static + '" data-gif="' + gif + '" data-title="' + title + '" fav-saved="no"><i class="far fa-star mx-auto fav btn hide"></i></span>' +
+                    '<iframe class="download_iframe" style="display:none;"></iframe><button class="btn dl-btn hide" data-gif="' + gif + '"><i class="fa fa-download"></i> Download</button>');
                 gifCard.append(overlay);
-               
                 $(".gifs").append(gifCard);
                 //elements with the hide class will only be shown on hover
                 $('.hide').hide();
@@ -128,15 +165,19 @@ $(document).ready(function () {
         $(".gifs").on("click", ".fav-div", function () {
             if ($(this).attr("fav-saved") === "no") {
                 $(this).attr("fav-saved", "yes");
-                $(this).empty().html('<i class="fas fa-star mx-auto fav btn hide"></i><button class="btn dl-btn hide"><i class="fa fa-download"></i> Download</button>');
-                var newFav = $(this).parent().parent().html();
+                $(this).empty().html('<i class="fas fa-star mx-auto fav btn hide"></i>');
+                var newFav = {
+                    title: $(this).attr("data-title"),
+                    static: $(this).attr("data-static"),
+                    gif: $(this).attr("data-gif")
+                };
                 console.log(newFav);
                 favoriteGifs.push(newFav);
                 console.log(favoriteGifs[0]);
             }
             else if ($(this).attr("fav-saved") === "yes") {
                 $(this).attr("fav-saved", "no");
-                $(this).empty().html('<i class="far fa-star mx-auto fav btn hide"></i><button class="btn dl-btn hide"><i class="fa fa-download"></i> Download</button>');
+                $(this).empty().html('<i class="far fa-star mx-auto fav btn hide"></i>');
                 console.log($(this).attr("fav-saved"));
             }
 
