@@ -77,7 +77,7 @@ $(document).ready(function () {
         gifCard.append(b);
         var overlay = $("<div>");
         overlay.addClass("card-img-overlay d-flex flex-column justify-content-end hover-text");
-        overlay.append('<h5 class="card-title gif-name hide">' + title + '</h5>' + '<span class="fav-div" data-static="' + static + '" data-gif="' + gif + '" data-title="' + title + '" fav-saved="no"><i class="far fa-star mx-auto fav btn hide"></i></span>' +
+        overlay.append('<h5 class="card-title gif-name hide">' + title + '</h5>' + '<span class="fav-div" data-static="' + static + '" data-gif="' + gif + '" data-title="' + title + '" fav-saved="yes"><i class="fas fa-star mx-auto fav btn hide"></i></span>' +
             '<iframe class="download_iframe" style="display:none;"></iframe><button class="btn dl-btn hide" data-gif="' + gif + '"><i class="fa fa-download"></i> Download</button>');
         gifCard.append(overlay);
         $(".gifs").append(gifCard);
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 var overlay = $("<div>");
                 overlay.addClass("card-img-overlay d-flex flex-column justify-content-end hover-text");
                 overlay.append('<h5 class="card-title gif-name hide">' + title + '</h5>' + '<span class="fav-div" data-static="' + static + '" data-gif="' + gif + '" data-title="' + title + '" fav-saved="no"><i class="far fa-star mx-auto fav btn hide"></i></span>' +
-                    '<iframe class="download_iframe" style="display:none;"></iframe><button class="btn dl-btn hide" data-gif="' + gif + '"><i class="fa fa-download"></i> Download</button>');
+                    '<a target="_blank" href=' + gif + 'download><button class="btn dl-btn hide" data-gif="' + gif + '"><i class="fa fa-download"></i> Download</button></a>');
                 gifCard.append(overlay);
                 $(".gifs").append(gifCard);
                 //elements with the hide class will only be shown on hover
