@@ -178,6 +178,9 @@ $(document).ready(function () {
             else if ($(this).attr("fav-saved") === "yes") {
                 $(this).attr("fav-saved", "no");
                 $(this).empty().html('<i class="far fa-star mx-auto fav btn hide"></i>');
+                var removeFav = favoriteGifs.indexOf($(this).attr("data-title"));
+                console.log(removeFav);
+                favoriteGifs.splice(removeFav, 1);
                 console.log($(this).attr("fav-saved"));
             }
 
