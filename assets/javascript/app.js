@@ -43,8 +43,11 @@ $(document).ready(function () {
         var newName = gifArray[newIndex];
         console.log(newIndex);
         $('#button_' + newIndex).data("name", newName);
-        console.log($('#button_15').data("name"));
-        $('#button_' + newIndex).on("click", function () {
+        console.log(newButton);
+
+        $('.buttons').append("<button class=\"btn btn-primary gen-button\" type=\"button\" id=\"button_" + newIndex + "\">" + gifArray[newIndex] + "</div>");
+        $('#button_' + newIndex).data("name", gifArray[newIndex]);
+        $('.buttons').on("click", ("#button_" + newIndex), function () {
             onClickGifs($(this));
         });
     });
@@ -53,9 +56,9 @@ $(document).ready(function () {
         console.log(x);
         onClickGifs($(this));
     });
-    $('#fav-button').on("click", function() {
+    $('#fav-button').on("click", function () {
         $('.gifs').empty();
-        favoriteGifs.forEach(function(element) {
+        favoriteGifs.forEach(function (element) {
             addFavs(element.static, element.title, element.gif);
         });
     });
@@ -87,7 +90,7 @@ $(document).ready(function () {
 
 
     }
-    $('.gifs').on("click", ".dl-btn", function() {
+    $('.gifs').on("click", ".dl-btn", function () {
         console.log($(this).attr("data-gif"));
         $(this.download_iframe).attr("href", $(this).attr("data-gif"));
     });
@@ -161,32 +164,32 @@ $(document).ready(function () {
         });
 
     }
-    
-        $(".gifs").on("click", ".fav-div", function () {
-            if ($(this).attr("fav-saved") === "no") {
-                $(this).attr("fav-saved", "yes");
-                $(this).empty().html('<i class="fas fa-star mx-auto fav btn hide"></i>');
-                var newFav = {
-                    title: $(this).attr("data-title"),
-                    static: $(this).attr("data-static"),
-                    gif: $(this).attr("data-gif")
-                };
-                console.log(newFav);
-                favoriteGifs.push(newFav);
-                console.log(favoriteGifs[0]);
-            }
-            else if ($(this).attr("fav-saved") === "yes") {
-                $(this).attr("fav-saved", "no");
-                $(this).empty().html('<i class="far fa-star mx-auto fav btn hide"></i>');
-                var removeFav = favoriteGifs.indexOf($(this).attr("data-title"));
-                console.log(removeFav);
-                favoriteGifs.splice(removeFav, 1);
-                console.log($(this).attr("fav-saved"));
-            }
 
-        });
-    
-  
+    $(".gifs").on("click", ".fav-div", function () {
+        if ($(this).attr("fav-saved") === "no") {
+            $(this).attr("fav-saved", "yes");
+            $(this).empty().html('<i class="fas fa-star mx-auto fav btn hide"></i>');
+            var newFav = {
+                title: $(this).attr("data-title"),
+                static: $(this).attr("data-static"),
+                gif: $(this).attr("data-gif")
+            };
+            console.log(newFav);
+            favoriteGifs.push(newFav);
+            console.log(favoriteGifs[0]);
+        }
+        else if ($(this).attr("fav-saved") === "yes") {
+            $(this).attr("fav-saved", "no");
+            $(this).empty().html('<i class="far fa-star mx-auto fav btn hide"></i>');
+            var removeFav = favoriteGifs.indexOf($(this).attr("data-title"));
+            console.log(removeFav);
+            favoriteGifs.splice(removeFav, 1);
+            console.log($(this).attr("fav-saved"));
+        }
+
+    });
+
+
     function hoverLogic(hover) {
         $(hover).hover(
             function () {
